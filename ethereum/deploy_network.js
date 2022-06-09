@@ -3,10 +3,7 @@ const Web3 = require('web3');
 
 const compiledFactory = require('./build/DoctorNetwork/NetworkFactory.json');
 
-const provider = new HDWalletProvider(
-  'note orphan wood door mirror milk lunar abandon already taste utility acid',
-  'https://rinkeby.infura.io/v3/b3d784d7ac5546fa8809aa72e3f18597'
-);
+const provider = new HDWalletProvider('', '');
 
 const web3 = new Web3(provider);
 
