@@ -48,7 +48,6 @@ const Doctor = () => {
   const [reason, setReason] = useState('');
   const [admOn, setAdmOn] = useState('');
   const [disOn, setDisOn] = useState('');
-  //   const [ipfs, setIpfs] = useState('');
   const [address, setAddress] = useState('');
   const [docAccAddr, setDocAccAddr] = useState('');
   const [docName, setDocName] = useState('');
@@ -69,7 +68,6 @@ const Doctor = () => {
   }, []);
 
   const getDoctor = async () => {
-    // setAddView(false);
     setViewDoc(false);
     setLoading(true);
     try {
@@ -79,7 +77,7 @@ const Doctor = () => {
         .call({ from: accounts[0] })
         .then((res) => {
           let result = res;
-          console.log(result);
+
           setLoading(false);
           //   setAddView(false);
           setViewDoc(true);
@@ -89,33 +87,28 @@ const Doctor = () => {
           setDocContact(result['_doc_contact']);
           setDocAddress(result['_doc_address']);
           setDocVerified(result['isVerified']);
-          setDopen(true);
+          // setDopen(true);
         });
     } catch (e) {
       setLoading(false);
-      // alert('error');
+      alert('Error!');
     }
   };
 
   const onHosNameChange = (event) => {
     setHosName(event.target.value);
-    console.log(hosName);
   };
   const onReasonChange = (event) => {
     setReason(event.target.value);
-    console.log(reason);
   };
   const onAdmOnChange = (event) => {
     setAdmOn(event.target.value.toString());
-    console.log(admOn);
   };
   const onDisOnChange = (event) => {
     setDisOn(event.target.value.toString());
-    console.log(disOn);
   };
   const onAddressChange = (event) => {
     setAddress(event.target.value);
-    console.log(address);
   };
 
   const viewDoctorView = () => {
@@ -222,17 +215,17 @@ const Doctor = () => {
         decode(ciphertext).toString(),
         'medinet'
       ).toString(CryptoJS.enc.Utf8);
-      console.log('encrypted:' + ciphertext);
-      console.log('decrypted:' + decryptedtext);
+      // console.log('encrypted:' + ciphertext);
+      // console.log('decrypted:' + decryptedtext);
       await this.setState({ ipfs: url.toString() });
       let result = await patient.methods
         .addRecord(address, hosName, reason, admOn, disOn, ciphertext)
         .send({ from: accounts[0] });
-      console.log(result);
+      // console.log(result);
       setLoading(false);
       setOrecord(true);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       setLoading(false);
       setOrecord(true);
       alert('Error Uploading Report');
@@ -349,11 +342,11 @@ const Doctor = () => {
       // rkview: false,
       // pview: true,
 
-      console.log('Other Patient Info Set!!!');
+      // console.log('Other Patient Info Set!!!');
     } catch (e) {
       setLoading(false);
       alert('error or no permission');
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -365,12 +358,12 @@ const Doctor = () => {
       setArecord(false);
       setOview(false);
       setLoading(true);
-      let res = patient.methods
+      let res = await patient.methods
         .getPatientRecords(address)
         .call({ from: accounts[0] });
       setRlen(res['_hname'].length);
 
-      console.log(rlen);
+      // console.log(rlen);
       let recs = [];
       for (let i = 1; i <= rlen; i++) {
         recs.push({
@@ -384,8 +377,8 @@ const Doctor = () => {
       setRecords(recs);
       setLoading(false);
       setRview(true);
-      console.log(records);
-      console.log('Patient Records Set!!!');
+      // console.log(records);
+      // console.log('Patient Records Set!!!');
     } catch (e) {
       setLoading(false);
       alert('Error or No Records Found');
@@ -527,7 +520,7 @@ const Doctor = () => {
             </Grid>
           </Grid.Row>
           <Grid.Row>
-            <Grid.Column width={4}>
+            <Grid.Column width={5}>
               <Button
                 content="Doctor Info"
                 icon="address card outline"
@@ -543,7 +536,7 @@ const Doctor = () => {
                 }}
               ></Button>
             </Grid.Column>
-            <Grid.Column width={4}>
+            <Grid.Column width={5}>
               <Button
                 content="Add Patient Record"
                 icon="plus"
@@ -560,24 +553,7 @@ const Doctor = () => {
                 }}
               ></Button>
             </Grid.Column>
-            {/* <Grid.Column width={4}>
-              <Button
-                content="View Patient Info"
-                icon="file alternate"
-                color="blue"
-                labelPosition="left"
-                onClick={async () => {
-                  setPview(false);
-                  setRview(false);
-                  setOview(true);
-                  setLoading(false);
-                  setArecord(false);
-                  setOrecord(false);
-                  setViewDoc(false);
-                }}
-              ></Button>
-            </Grid.Column> */}
-            <Grid.Column width={4}>
+            <Grid.Column width={5}>
               <Button
                 content="View Patient Info"
                 icon="file alternate"
@@ -602,23 +578,19 @@ const Doctor = () => {
                 {Oview()}
                 {viewDoctorView()}
                 {addOtherRecord()}
-                {viewPatientInfo()}
-                {viewPatientRecords()}
               </Grid.Column>
             </Grid>
           </Grid.Row>
+          <Grid.Row>
+            <Grid.Column width={6}>{viewPatientInfo()}</Grid.Column>
+            <Grid.Column width={10}>{viewPatientRecords()}</Grid.Column>
+          </Grid.Row>
         </Grid>
+        <br></br>
+        <br></br>
       </Layout>
     </>
   );
 };
-
-// export async function getStaticProps(context) {
-//   const accounts = await web3.eth.getAccounts();
-
-//   return {
-//     props: { account: accounts[0] },
-//   };
-// }
 
 export default Doctor;

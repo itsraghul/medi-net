@@ -237,7 +237,7 @@ const Patient = (props) => {
     return null;
   };
 
-  const getPatientRecords = async () => {
+  const getAllPatientRecords = async () => {
     try {
       const accounts = await web3.eth.getAccounts();
       setRkview(false);
@@ -247,12 +247,13 @@ const Patient = (props) => {
       setOview(false);
       setOrecord(false);
       setLoading(true);
-      let res = patient.methods
+      let res = await patient.methods
         .getPatientRecords(account)
         .call({ from: accounts[0] });
+      console.log(res);
       setRlen(res['_hname'].length);
 
-      console.log(rlen);
+      // console.log(rlen);
       let recs = [];
       for (let i = 1; i <= rlen; i++) {
         recs.push({
@@ -269,9 +270,10 @@ const Patient = (props) => {
       console.log(records);
       console.log('Patient Records Set!!!');
     } catch (e) {
+      // alert('Error or No Records Found');
       setLoading(false);
-      alert('Error or No Records Found');
       // console.log(e);
+      alert(e);
     }
   };
 
@@ -288,6 +290,7 @@ const Patient = (props) => {
       let res = patient.methods
         .getPatientRecords(address)
         .call({ from: accounts[0] });
+
       setRlen(res['_hname'].length);
 
       console.log(rlen);
@@ -375,13 +378,6 @@ const Patient = (props) => {
       var ciphertext = encode(
         CryptoJS.AES.encrypt(JSON.stringify(url), 'medinet').toString()
       );
-      // var decryptedtext = CryptoJS.AES.decrypt(
-      //   decode(ciphertext).toString(),
-      //   'medinet'
-      // ).toString(CryptoJS.enc.Utf8);
-      // console.log('encrypted:' + ciphertext);
-      // console.log('decrypted:' + decryptedtext);
-      // await this.setState({ ipfs: url.toString() });
       let acc = accounts[0];
       let result = await patient.methods
         .addRecord(acc, hosName, reason, admOn, disOn, ciphertext)
@@ -389,7 +385,11 @@ const Patient = (props) => {
       console.log(result);
       setLoading(false);
       setArecord(true);
-      alert('Reecord Added');
+      setHosName('');
+      setReason('');
+      setAdmOn('');
+      setDisOn('');
+      alert('Record Added');
     } catch (e) {
       console.log(e);
       setLoading(false);
@@ -415,12 +415,17 @@ const Patient = (props) => {
       ).toString(CryptoJS.enc.Utf8);
       // console.log('encrypted:' + ciphertext);
       // console.log('decrypted:' + decryptedtext);
-      set;
-      await this.setState({ ipfs: url.toString() });
+      // set;
+      // await this.setState({ ipfs: url.toString() });
       let result = await patient.methods
         .addRecord(address, hosName, reason, admOn, disOn, ciphertext)
         .send({ from: accounts[0] });
       console.log(result);
+      setHosName('');
+      setReason('');
+      setAdmOn('');
+      setDisOn('');
+      setAddress('');
       setLoading(false);
       setOrecord(true);
     } catch (e) {
@@ -443,13 +448,13 @@ const Patient = (props) => {
       setLoading(false);
       setGview(true);
       alert('Access Permission added for:\t' + address);
+      setAddress('');
     } catch (e) {
       console.log(e);
       setLoading(false);
       setGview(true);
       alert('Error Authorising');
     }
-    setAddress('');
   };
   const onRevokeSubmit = async () => {
     try {
@@ -463,13 +468,13 @@ const Patient = (props) => {
       setLoading(false);
       setRkview(true);
       alert('Access Permission Revoked for:\t' + address);
+      setAddress('');
     } catch (e) {
       console.log(e);
       setLoading(false);
       setRkview(true);
       alert('Error Authorising');
     }
-    setAddress('');
   };
 
   const addRecord = () => {
@@ -789,8 +794,8 @@ const Patient = (props) => {
                 icon="address card outline"
                 labelPosition="left"
                 color="blue"
-                onClick={async () => {
-                  getPatientRecords();
+                onClick={() => {
+                  getAllPatientRecords();
                 }}
               ></Button>
             </Grid.Column>
@@ -872,7 +877,7 @@ const Patient = (props) => {
             <Grid.Column width={5}>
               <Button
                 content="Upload Other Patient Records"
-                icon="files"
+                icon="file"
                 labelPosition="left"
                 color="olive"
                 onClick={async () => {
@@ -894,7 +899,6 @@ const Patient = (props) => {
                 {isLoading()}
                 {Oview()}
                 {viewPatientInfo()}
-                {viewPatientRecords()}
                 {addRecord()}
                 {addGrant()}
                 {revokeGrant()}
@@ -902,6 +906,7 @@ const Patient = (props) => {
               </Grid.Column>
             </Grid>
           </Grid.Row>
+          <Grid.Row>{viewPatientRecords()}</Grid.Row>
           <br></br>
           <br></br>
         </Grid>
@@ -909,14 +914,5 @@ const Patient = (props) => {
     </>
   );
 };
-
-// export async function getStaticProps(context) {
-//   const accounts = await web3.eth.getAccounts();
-//   const account = accounts[0];
-
-//   return {
-//     props: { account: account },
-//   };
-// }
 
 export default Patient;
