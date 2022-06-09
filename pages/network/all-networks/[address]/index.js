@@ -25,42 +25,37 @@ const NetworkDetails = (props) => {
       {
         header: address,
         meta: 'Address of Contract',
-        description:
-          'The manager created the project and can request contributors for money.',
+        description: 'The Address of the network smart contract.',
         style: { overflowWrap: 'break-word' },
       },
       {
         header: network_head,
         meta: 'Address of Network Head',
-        description:
-          'The manager created the project and can request contributors for money.',
+        description: 'The manager who created the network.',
         style: { overflowWrap: 'break-word' },
       },
       {
         header: networkSpecialisation,
         meta: 'Network Specialisation',
-        description:
-          'You must contribute atleast this must wei to fund this project.',
+        description: 'The specialisation of this network.',
         style: { overflowWrap: 'break-word' },
       },
       {
         header: networkLimit,
         meta: 'Network Limit',
-        description:
-          'A request tries to withdraw money from the contract.Request must be approved by approvers.',
+        description: 'The no of doctors who can be in this network.',
         style: { overflowWrap: 'break-word' },
       },
       {
         header: doctorsCount,
         meta: 'Number of Doctors in Network',
-        description: 'The no of times people donated to this project.',
+        description: 'The no of doctors in the network.',
         style: { overflowWrap: 'break-word' },
       },
       {
         header: numPatientReportCount,
         meta: 'Patient Report Count',
-        description:
-          'The balance is how much money this project has left to spend.',
+        description: 'The no of reports discussion published.',
         style: { overflowWrap: 'break-word' },
       },
     ];
