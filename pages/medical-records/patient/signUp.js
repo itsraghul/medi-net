@@ -68,7 +68,7 @@ const SignUp = (props) => {
   return (
     <>
       <Layout>
-        <Link href="/network/">
+        <Link href="/medical-records/">
           <a style={{ fontSize: '1.05rem', fontWeight: 'bold' }}>
             {' '}
             {`< Back `}
