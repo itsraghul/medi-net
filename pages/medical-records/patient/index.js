@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Card,
   Button,
-  Message,
   Placeholder,
   Grid,
   Form,
@@ -53,27 +52,6 @@ const Patient = (props) => {
   //   const [ipfs, setIpfs] = useState('');
   const [address, setAddress] = useState('');
 
-  const onHosNameChange = (event) => {
-    setHosName(event.target.value);
-    console.log(hosName);
-  };
-  const onReasonChange = (event) => {
-    setReason(event.target.value);
-    console.log(reason);
-  };
-  const onAdmOnChange = (event) => {
-    setAdmOn(event.target.value.toString());
-    console.log(admOn);
-  };
-  const onDisOnChange = (event) => {
-    setDisOn(event.target.value.toString());
-    console.log(disOn);
-  };
-  const onAddressChange = (event) => {
-    setAddress(event.target.value);
-    console.log(address);
-  };
-
   const setDisplayAcc = async () => {
     const accounts = await web3.eth.getAccounts();
     setAccount(accounts[0]);
@@ -82,6 +60,27 @@ const Patient = (props) => {
   useEffect(() => {
     setDisplayAcc();
   }, []);
+
+  const onHosNameChange = (event) => {
+    setHosName(event.target.value);
+    // console.log(hosName);
+  };
+  const onReasonChange = (event) => {
+    setReason(event.target.value);
+    // console.log(reason);
+  };
+  const onAdmOnChange = (event) => {
+    setAdmOn(event.target.value.toString());
+    // console.log(admOn);
+  };
+  const onDisOnChange = (event) => {
+    setDisOn(event.target.value.toString());
+    // console.log(disOn);
+  };
+  const onAddressChange = (event) => {
+    setAddress(event.target.value);
+    // console.log(address);
+  };
 
   const isLoading = () => {
     if (loading) {
@@ -129,7 +128,7 @@ const Patient = (props) => {
       let res = await patient.methods
         .getPatientDetails(account)
         .call({ from: accounts[0] });
-      console.log(res);
+      // console.log(res);
       setName(res['_name']);
       setPhone(res['_phone']);
       setGender(res['_gender']);
@@ -148,11 +147,11 @@ const Patient = (props) => {
       // rkview: false,
       // pview: true,
 
-      console.log('Other Patient Info Set!!!');
+      // console.log('Other Patient Info Set!!!');
     } catch (e) {
       setLoading(false);
       alert('error or no permission');
-      console.log(e);
+      // console.log(e);
     }
   };
 
