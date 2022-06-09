@@ -6,7 +6,7 @@ const LoginCards = (props) => {
   return (
     <>
       <Grid>
-        <Grid.Column width={5}>
+        <Grid.Column width={6}>
           <Card>
             <Card.Content>
               <Card.Header>Admin </Card.Header>
@@ -30,7 +30,7 @@ const LoginCards = (props) => {
             </Card.Content>
           </Card>
         </Grid.Column>
-        <Grid.Column width={6}>
+        <Grid.Column width={5}>
           <Card>
             <Card.Content>
               <Card.Header>Doctor </Card.Header>
