@@ -5,8 +5,8 @@ import { Grid, Card, Button } from 'semantic-ui-react';
 const LoginCards = (props) => {
   return (
     <>
-      <Grid>
-        <Grid.Column width={6}>
+      <Grid columns={3}>
+        <Grid.Column>
           <Card>
             <Card.Content>
               <Card.Header>Admin </Card.Header>
@@ -30,7 +30,7 @@ const LoginCards = (props) => {
             </Card.Content>
           </Card>
         </Grid.Column>
-        <Grid.Column width={5}>
+        <Grid.Column>
           <Card>
             <Card.Content>
               <Card.Header>Doctor </Card.Header>
@@ -53,7 +53,7 @@ const LoginCards = (props) => {
             </Card.Content>
           </Card>
         </Grid.Column>
-        <Grid.Column width={5}>
+        <Grid.Column>
           <Card>
             <Card.Content>
               <Card.Header>Patient </Card.Header>

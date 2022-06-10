@@ -1,5 +1,5 @@
 import Head from 'next/head';
-// import Image from 'next/image';
+// import Images from 'next/image';
 import { Card, Grid, Image } from 'semantic-ui-react';
 import Link from 'next/link';
 import Layout from '../components/Layout';
@@ -14,23 +14,33 @@ export default function Home() {
           name="description"
           content="Platform for patient record and medical network"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/Logo.png" />
       </Head>
       <Layout>
-        <br></br>
-        <br></br>
         <Grid>
+          <Grid.Row>
+            <Image
+              fluid
+              centered
+              src="/Banner 2E.png"
+              rounded
+              size="big"
+              alt="Banner"
+            ></Image>
+          </Grid.Row>
           <Grid.Row>
             <Grid.Column width={6} floated="right">
               <Link href="/medical-records">
                 <a>
                   <Card>
-                    <Image
-                      src="/Patient Records.png"
-                      // width={72}
-                      // height={16}
-                      alt="Patient"
-                    ></Image>
+                    <Card.Content>
+                      <Image
+                        src="/Patient Records.png"
+                        fluid
+                        size="medium"
+                        alt="Patient"
+                      ></Image>
+                    </Card.Content>
                   </Card>
                 </a>
               </Link>
@@ -39,7 +49,14 @@ export default function Home() {
               <Link href="/network">
                 <a>
                   <Card>
-                    <Image src="/Doctors Network.png" alt="Doctor"></Image>
+                    <Card.Content>
+                      <Image
+                        fluid
+                        size="medium"
+                        src="/Doctors Network.png"
+                        alt="Doctor"
+                      ></Image>
+                    </Card.Content>
                   </Card>
                 </a>
               </Link>

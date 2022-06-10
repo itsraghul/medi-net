@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Icon, Grid } from 'semantic-ui-react';
+import { Card, Button, Icon, Grid, Image } from 'semantic-ui-react';
 import Link from 'next/link';
 
 import factory from '../../ethereum/factory';
@@ -27,6 +27,14 @@ const Network = (props) => {
   return (
     <>
       <Layout>
+        <Image
+          fluid
+          centered
+          src="/Banner 1.png"
+          rounded
+          size="big"
+          alt="Banner"
+        ></Image>
         <h3>Open Medical Networks</h3>
         <Grid>
           <Grid.Column width={13}>{renderNetworks()}</Grid.Column>
