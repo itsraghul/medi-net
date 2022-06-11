@@ -217,7 +217,7 @@ const Doctor = () => {
       ).toString(CryptoJS.enc.Utf8);
       // console.log('encrypted:' + ciphertext);
       // console.log('decrypted:' + decryptedtext);
-      await this.setState({ ipfs: url.toString() });
+      // await this.setState({ ipfs: url.toString() });
       let result = await patient.methods
         .addRecord(address, hosName, reason, admOn, disOn, ciphertext)
         .send({ from: accounts[0] });
