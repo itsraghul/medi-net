@@ -8,6 +8,12 @@ const Layout = (props) => {
   return (
     <Container>
       <Head>
+        <title>MediNet</title>
+        <meta
+          name="description"
+          content="Platform for patient record and medical network"
+        />
+        <link rel="icon" href="/Logo.png" />
         <link
           async
           rel="stylesheet"

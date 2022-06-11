@@ -224,6 +224,11 @@ const Doctor = () => {
       // console.log(result);
       setLoading(false);
       setOrecord(true);
+      setHosName('');
+      setReason('');
+      setAdmOn('');
+      setDisOn('');
+      setAddress('');
     } catch (e) {
       // console.log(e);
       setLoading(false);

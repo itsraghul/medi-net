@@ -8,14 +8,6 @@ import styles from '../styles/Home.module.css';
 export default function Home() {
   return (
     <div>
-      <Head>
-        <title>MediNet</title>
-        <meta
-          name="description"
-          content="Platform for patient record and medical network"
-        />
-        <link rel="icon" href="/Logo.png" />
-      </Head>
       <Layout>
         <Grid>
           <Grid.Row>
