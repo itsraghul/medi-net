@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Message, Input } from 'semantic-ui-react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import patient from '../../../ethereum/patient';
 import web3 from '../../../ethereum/web3';
 import Layout from '../../../components/Layout';
 
 const SignUp = (props) => {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const [bloodGroup, setBloodGroup] = useState('');
