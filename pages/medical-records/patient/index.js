@@ -272,7 +272,7 @@ const Patient = (props) => {
       // alert('Error or No Records Found');
       setLoading(false);
       // console.log(e);
-      alert(e);
+      alert(e.message);
     }
   };
 
