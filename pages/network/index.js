@@ -54,7 +54,7 @@ const Network = (props) => {
   );
 };
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const networks = await factory.methods.getDeployedNetworks().call();
 
   return {
