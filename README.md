@@ -30,6 +30,6 @@ Doctors can join new networks.
 They can create an opinion of patient files as reports.
 Doctors in network can give their opinions on the particular doctor patient diagnosis.
 
-
+All the medical reports are uploaded through IPFS and its cid is securely encrypted using AES.
 
 
